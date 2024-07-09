@@ -74,7 +74,7 @@ modeEl.addEventListener("click", function() {
     } else {
         root.style.setProperty('--container-background', '#f7ede2');
         root.style.setProperty('--element-background', '#f5cac3');
-        root.style.setProperty('--text-color', '#84a59d');
+        root.style.setProperty('--text-color', '#72837f');
         root.style.setProperty('--button-color', '#84a59d');
         root.style.setProperty('--slider-color', '#201A23');
         root.style.setProperty('--slider-checked-color', '#6a5175');
