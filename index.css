@@ -1,0 +1,173 @@
+/*
+COLOR PALETTE
+
+BLACK: #201A23
+WHITE: #FBFBFB
+DARK: #44354A
+COLOR: #9E4770
+*/
+
+:root {
+    --container-background: #201A23;
+    --element-background: #44354A;
+    --text-color: #FFFFFF;
+    --button-color: #9E4770;
+    --slider-checked-color: #f7ede2;
+    --slider-color: #f5cac3;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: var(--text-color);
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-size: 48px;
+}
+
+h4 {
+    margin: 0;
+    font-size: 30px;
+}
+
+button {
+    background: var(--button-color);
+    border: 0;
+    border-radius: 10px;
+    display: inline;
+    font-size: 45px;
+    margin: 20px 8px;
+    padding: 10px 70px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+img {
+    width: 185px;
+    height: 185px;
+    border-radius: 50%;
+    border: 10px solid var(--element-background);
+}
+
+.container {
+    background: var(--container-background);
+    min-width: 500px;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 35px;
+}
+
+.live-data {
+    max-width: 800px;
+    min-width: 390px;
+    margin: 4px auto 25px;
+    background: var(--element-background);
+    min-height: 64px;
+    font-size: 32px;
+    padding: 8px 20px;
+    text-align: left;
+    word-wrap: break-word;
+    line-height: 48px;
+}
+
+.totals-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.totals {
+    background: var(--element-background);
+    font-size: 40px;
+    width: 390px;
+}
+
+.totals, .live-data {
+    font-weight: 700;
+    border-radius: 50px;
+} 
+
+.revenue {
+    margin-right: 16px;
+}
+
+.commission {
+    margin: 0;
+}
+
+/* CSS for toggle borrowed from W3 Schools :D */
+.switch {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { 
+    opacity: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--slider-color);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background: var(--slider-color);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background: var(--slider-checked-color);
+}
+
+input:not(:checked) + .slider {
+  background: var(--slider-checked-color);
+}
+
+/* input:focus + .slider {
+    box-shadow: 0 0 1px yellow;
+} */
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
