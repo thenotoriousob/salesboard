@@ -93,6 +93,7 @@ img {
     background: var(--element-background);
     font-size: 40px;
     width: 390px;
+    margin-top: 4px;
 }
 
 .totals, .live-data {
@@ -101,11 +102,11 @@ img {
 } 
 
 .revenue {
-    margin-right: 16px;
+    margin-right: 8px;
 }
 
 .commission {
-    margin: 0;
+    margin-left: 8px;
 }
 
 /* CSS for toggle borrowed from W3 Schools :D */
