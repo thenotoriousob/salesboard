@@ -1,17 +1,17 @@
 // Product A info
 const productA = {
+    name: "productA",
     emoji: "⭐",
     revenue: 200,
     commission: 50
 }
 // Product B info
 const productB = {
+    name: "productB",
     emoji: "🔥",
     revenue: 300,
     commission: 75
 }
-const productABtn = document.getElementById("productA");
-const productBBtn = document.getElementById("productB");
 const resetBtn = document.getElementById("reset");
 const salesEl = document.getElementById("sales");
 const salesCntEl = document.getElementById("sales-cnt");
@@ -25,12 +25,47 @@ const revenueFromLocalStorage = JSON.parse(localStorage.getItem("revenue"));
 const commissionFromLocalStorage = JSON.parse(localStorage.getItem("commission"));
 const root = document.querySelector(':root');
 const modeEl = document.getElementById("mode");
+const products = [productA, productB];
+const colorProperties = [
+                          {
+                            name: '--container-background',
+                            darkTheme: '#201A23',
+                            lightTheme: '#f7ede2'
+                          },
+                          {
+                            name: '--element-background',
+                            darkTheme: '#44354A',
+                            lightTheme: '#f5cac3'
+                          },
+                          {
+                            name: '--text-color',
+                            darkTheme: '#FFFFFF',
+                            lightTheme: '#72837f'
+                          },
+                          {
+                            name: '--button-color',
+                            darkTheme: '#9E4770',
+                            lightTheme: '#84a59d'
+                          },
+                          {
+                            name: '--slider-color',
+                            darkTheme: '#f5cac3',
+                            lightTheme: '#201A23'
+                          },
+                          {
+                            name: '--slider-checked-color',
+                            darkTheme: '#f7ede2',
+                            lightTheme: '#6a5175'
+                          }
+];
 
-let sales = [];
-let achievements = [];
-let totalRevenue = 0;
-let totalCommission = 0;
-let hasReceivedRevBonus = false;
+let sales;
+let achievements;
+let totalRevenue;
+let totalCommission;
+let hasReceivedRevBonus;
+
+resetPage();
 
 /* If this exists then the others must exist too */
 if (salesFromLocalStorage) {
@@ -42,20 +77,18 @@ if (salesFromLocalStorage) {
     displayUpdatedData();
 }
 
-productABtn.addEventListener("click", function() {
-    addSale(productA);
-})
+for (let i = 0; i < products.length; i++) {
 
-productBBtn.addEventListener("click", function() {
-    addSale(productB);
-})
+  let productBtn = document.getElementById(products[i].name);
+
+  productBtn.addEventListener("click", function() {
+    addSale(products[i]);
+  })
+
+}
 
 resetBtn.addEventListener("click", function() {
-    localStorage.clear();
-    sales = [];
-    achievements = [];
-    totalRevenue = 0;
-    totalCommission = 0;
+    resetPage();
 
     displayUpdatedData();
 })
@@ -64,20 +97,10 @@ modeEl.addEventListener("click", function() {
 
     let isDarkMode = modeEl.checked;
 
-    if (isDarkMode) {
-        root.style.setProperty('--container-background', '#201A23');
-        root.style.setProperty('--element-background', '#44354A');
-        root.style.setProperty('--text-color', '#FFFFFF');
-        root.style.setProperty('--button-color', '#9E4770');
-        root.style.setProperty('--slider-color', '#f5cac3');
-        root.style.setProperty('--slider-checked-color', '#f7ede2');
-    } else {
-        root.style.setProperty('--container-background', '#f7ede2');
-        root.style.setProperty('--element-background', '#f5cac3');
-        root.style.setProperty('--text-color', '#72837f');
-        root.style.setProperty('--button-color', '#84a59d');
-        root.style.setProperty('--slider-color', '#201A23');
-        root.style.setProperty('--slider-checked-color', '#6a5175');
+    for (let i = 0; i < colorProperties.length; i++) {
+
+        root.style.setProperty(colorProperties[i].name, isDarkMode ? colorProperties[i].darkTheme : colorProperties[i].lightTheme);
+
     }
 })
 
@@ -115,4 +138,13 @@ function displayUpdatedData() {
   achievementsCntEl.textContent = achievements.length;
   totalRevenueEl.textContent = `$ ${totalRevenue}`;
   totalCommissionEl.textContent = `$ ${totalCommission}`;
+}
+
+function resetPage() {
+    sales = [];
+    achievements = [];
+    totalRevenue = 0;
+    totalCommission = 0;
+    hasReceivedRevBonus = false;
+    localStorage.clear();
 }
