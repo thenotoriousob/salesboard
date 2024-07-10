@@ -79,16 +79,19 @@ if (salesFromLocalStorage) {
 
 for (let i = 0; i < products.length; i++) {
 
-  let productBtn = document.getElementById(products[i].name);
+    let productBtn = document.getElementById(products[i].name);
 
-  productBtn.addEventListener("click", function() {
-    addSale(products[i]);
-  })
+    productBtn.addEventListener("click", function() {
+      addSale(products[i]);
+    })
 
 }
 
 resetBtn.addEventListener("click", function() {
     resetPage();
+
+    hasReceivedRevBonus = false;
+    localStorage.clear();
 
     displayUpdatedData();
 })
@@ -132,12 +135,12 @@ function calculateAchievement() {
 }
 
 function displayUpdatedData() {
-  salesEl.textContent = sales.join("");
-  salesCntEl.textContent = sales.length;
-  achievementsEl.textContent = achievements.join("");
-  achievementsCntEl.textContent = achievements.length;
-  totalRevenueEl.textContent = `$ ${totalRevenue}`;
-  totalCommissionEl.textContent = `$ ${totalCommission}`;
+    salesEl.textContent = sales.join("");
+    salesCntEl.textContent = sales.length;
+    achievementsEl.textContent = achievements.join("");
+    achievementsCntEl.textContent = achievements.length;
+    totalRevenueEl.textContent = `$ ${totalRevenue}`;
+    totalCommissionEl.textContent = `$ ${totalCommission}`;
 }
 
 function resetPage() {
@@ -145,6 +148,4 @@ function resetPage() {
     achievements = [];
     totalRevenue = 0;
     totalCommission = 0;
-    hasReceivedRevBonus = false;
-    localStorage.clear();
 }
